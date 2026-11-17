@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Represents an authenticated user profile in the Orchestrix platform.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique Firebase user ID" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "role": { "type": "string", "enum": ["Admin", "DevOps / SRE", "Viewer"], "description": "Role in cluster" },
+        "photoURL": { "type": "string", "description": "Profile avatar URL" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of user registration" },
+        "lastLoginAt": { "type": "string", "description": "ISO timestamp of last sign-in" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "JobRecord": {
+      "title": "JobRecord",
+      "description": "An orchestrated workload job record.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique workload job ID" },
+        "name": { "type": "string", "description": "Workload title" },
+        "type": { "type": "string", "description": "Workload type category" },
+        "status": { "type": "string", "enum": ["Queued", "Running", "Completed", "Failed", "Paused"], "description": "Current lifecycle status" },
+        "priority": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"], "description": "Priority tier" },
+        "worker": { "type": "string", "description": "Assigned worker node" },
+        "workerId": { "type": "string", "description": "Assigned worker node ID" },
+        "enqueuedAt": { "type": "number", "description": "Enqueue timestamp" },
+        "submittedBy": { "type": "string", "description": "Author UID or email" },
+        "error": { "type": "string", "description": "Failure error message if any" }
+      },
+      "required": ["id", "name", "type", "status", "priority"]
+    },
+    "DLQRecord": {
+      "title": "DLQRecord",
+      "description": "A quarantined workload in the Dead Letter Queue.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "DLQ record ID" },
+        "jobId": { "type": "string", "description": "Original failed job ID" },
+        "jobName": { "type": "string", "description": "Original job title" },
+        "failureReason": { "type": "string", "description": "Diagnostic reason for DLQ isolation" },
+        "failureType": { "type": "string", "enum": ["TIMEOUT", "CRASH", "RATE_LIMIT", "INVALID_INPUT", "OOM_KILLED"], "description": "Category of failure" },
+        "quarantinedAt": { "type": "number", "description": "Timestamp when placed into DLQ" },
+        "totalAttempts": { "type": "number", "description": "Retry attempts prior to DLQ" }
+      },
+      "required": ["id", "jobId", "failureReason", "failureType", "quarantinedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents keyed by Firebase Auth UID."
+    },
+    "/jobs/{jobId}": {
+      "schema": "JobRecord",
+      "description": "Workload jobs submitted to Orchestrix."
+    },
+    "/dlq/{dlqId}": {
+      "schema": "DLQRecord",
+      "description": "Dead Letter Queue quarantined records."
+    }
+  }
+}

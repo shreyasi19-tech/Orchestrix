@@ -1,0 +1,6 @@
+{
+  "name": "Orchestrix — AI Workload Orchestration Platform",
+  "description": "Intelligent distributed AI workload orchestration platform that routes, prioritizes, monitors, and scales AI and data-processing jobs across specialized workers with adaptive scheduling and fault tolerance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

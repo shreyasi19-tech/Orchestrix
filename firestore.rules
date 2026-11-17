@@ -1,0 +1,139 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function hasUserDoc() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function userRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && hasUserDoc() && userRole() == 'Admin';
+    }
+
+    function isAdminOrDevOps() {
+      return isSignedIn() && hasUserDoc() && userRole() in ['Admin', 'DevOps / SRE'];
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'email', 'role'])
+        && data.keys().hasOnly(['uid', 'email', 'displayName', 'role', 'photoURL', 'createdAt', 'lastLoginAt'])
+        && isValidId(data.uid)
+        && data.email is string && data.email.size() <= 254
+        && data.role in ['Admin', 'DevOps / SRE', 'Viewer']
+        && (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 120))
+        && (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 1024))
+        && (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 64))
+        && (!('lastLoginAt' in data) || (data.lastLoginAt is string && data.lastLoginAt.size() <= 64));
+    }
+
+    function isValidJobRecord(data) {
+      return data.keys().hasAll(['id', 'name', 'type', 'status', 'priority'])
+        && data.keys().hasOnly(['id', 'name', 'type', 'status', 'priority', 'worker', 'workerId', 'enqueuedAt', 'submittedBy', 'error'])
+        && isValidId(data.id)
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 200
+        && data.type is string && data.type.size() > 0 && data.type.size() <= 64
+        && data.status in ['Queued', 'Running', 'Completed', 'Failed', 'Paused']
+        && data.priority in ['Critical', 'High', 'Medium', 'Low']
+        && (!('worker' in data) || (data.worker is string && data.worker.size() <= 100))
+        && (!('workerId' in data) || (data.workerId is string && data.workerId.size() <= 128))
+        && (!('enqueuedAt' in data) || data.enqueuedAt is number)
+        && (!('submittedBy' in data) || (data.submittedBy is string && data.submittedBy.size() <= 254))
+        && (!('error' in data) || (data.error is string && data.error.size() <= 1000));
+    }
+
+    function isValidDLQRecord(data) {
+      return data.keys().hasAll(['id', 'jobId', 'failureReason', 'failureType', 'quarantinedAt'])
+        && data.keys().hasOnly(['id', 'jobId', 'jobName', 'failureReason', 'failureType', 'quarantinedAt', 'totalAttempts'])
+        && isValidId(data.id)
+        && isValidId(data.jobId)
+        && (!('jobName' in data) || (data.jobName is string && data.jobName.size() <= 200))
+        && data.failureReason is string && data.failureReason.size() > 0 && data.failureReason.size() <= 1000
+        && data.failureType in ['TIMEOUT', 'CRASH', 'RATE_LIMIT', 'INVALID_INPUT', 'OOM_KILLED']
+        && data.quarantinedAt is number
+        && (!('totalAttempts' in data) || data.totalAttempts is number);
+    }
+
+    // User profiles: PII isolated to owner or Admin; new self-registrations forced to Viewer
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if isSignedIn()
+        && isValidId(userId)
+        && isValidUserProfile(incoming())
+        && (
+          (isOwner(userId) && incoming().uid == request.auth.uid && incoming().role == 'Viewer')
+          || isAdmin()
+        );
+      allow update: if isSignedIn()
+        && isValidId(userId)
+        && isValidUserProfile(incoming())
+        && (
+          isAdmin()
+          || (
+            isOwner(userId)
+            && incoming().uid == existing().uid
+            && incoming().role == existing().role
+            && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'lastLoginAt'])
+          )
+        );
+      allow delete: if isAdmin();
+    }
+
+    // Workload Jobs: readable by authenticated users, writable only by Admin or DevOps / SRE
+    match /jobs/{jobId} {
+      allow get, list: if isSignedIn();
+      allow create: if isAdminOrDevOps()
+        && isValidId(jobId)
+        && isValidJobRecord(incoming())
+        && incoming().id == jobId;
+      allow update: if isAdminOrDevOps()
+        && isValidId(jobId)
+        && isValidJobRecord(incoming())
+        && incoming().id == existing().id;
+      allow delete: if isAdminOrDevOps() && isValidId(jobId);
+    }
+
+    // Dead Letter Queue records: readable by authenticated users, writable only by Admin or DevOps / SRE
+    match /dlq/{dlqId} {
+      allow get, list: if isSignedIn();
+      allow create: if isAdminOrDevOps()
+        && isValidId(dlqId)
+        && isValidDLQRecord(incoming())
+        && incoming().id == dlqId;
+      allow update: if isAdminOrDevOps()
+        && isValidId(dlqId)
+        && isValidDLQRecord(incoming())
+        && incoming().id == existing().id;
+      allow delete: if isAdminOrDevOps() && isValidId(dlqId);
+    }
+  }
+}

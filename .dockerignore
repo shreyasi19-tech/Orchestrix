@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+data/*.db*
+data/users_store.json
+data/cluster_state.json
+.git
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store

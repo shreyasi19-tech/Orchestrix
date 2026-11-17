@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: orchestrix-platform
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: DISABLE_HMR
+        value: "true"
+    disk:
+      name: orchestrix-data
+      mountPath: /app/data
+      sizeGB: 1

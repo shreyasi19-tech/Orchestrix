@@ -1,0 +1,195 @@
+{
+  "savedAt": 1794759411949,
+  "users": [
+    {
+      "id": "usr_alex_vance",
+      "name": "Alex Vance",
+      "email": "alex@orchestrix.io",
+      "role": "DevOps / SRE",
+      "passwordHash": "10bc85dc2303fcc8b9d1e5453a7bd41e4bb83a02cc0558df7734f7ed64a586ceccb5c8834c4937095d766b62eb4d483ba6eef6bd01f96c416e80b36fa53c18cc",
+      "salt": "2df0fe5a9195b47ded2107d13eaa76b2",
+      "createdAt": "2026-11-15T08:14:15.040Z",
+      "lastLoginAt": "2026-11-15T08:14:15.040Z"
+    },
+    {
+      "id": "usr_admin_cluster",
+      "name": "DevOps Admin",
+      "email": "admin@orchestrix.io",
+      "role": "Admin",
+      "passwordHash": "177049c558e9ba8cf636a7deea6390d6c46988775aa762af6ad7dae72cd3550ab14f79851e03325480f4c2fa7799ce511ff17620b6d9e47e65414b116df58153",
+      "salt": "7efa75d0da9ebd64049f9832b45577ab",
+      "createdAt": "2026-11-15T08:14:15.102Z",
+      "lastLoginAt": "2026-11-15T08:14:15.102Z"
+    },
+    {
+      "id": "usr_elena_viewer",
+      "name": "Elena Rostova",
+      "email": "viewer@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "9d1ede1be34759cae327b12b27ad23a81d9d7debabc0c0997608679477c228b968554a0135de0f630b991c9ba1f35d317cafd4c862b7fbe13819fab5a22baa4c",
+      "salt": "15965587e26a7663b260a738a91211ce",
+      "createdAt": "2026-11-15T08:14:15.150Z",
+      "lastLoginAt": "2026-11-15T08:14:15.150Z"
+    },
+    {
+      "id": "usr_2e33c9f190f0",
+      "name": "Privilege Escalation Attempt",
+      "email": "viewer_only_1794730636731@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "f05b8408861a4c5927097db36973ed762086339dc1db6b8cd4fa20beaeb7f61910e0c6f09e6d0693f79ba8e9039e1073b69d9ff728fc4a23da899cf542970bfe",
+      "salt": "cd9d8658d5375350a68442bcb50d7b59",
+      "createdAt": "2026-11-15T08:17:16.815Z",
+      "lastLoginAt": "2026-11-15T08:17:16.815Z"
+    },
+    {
+      "id": "usr_55790c137b56",
+      "name": "Viewer User",
+      "email": "viewer_1794730636838@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "3700250b0121582ae64c547379f67fe1ebbc5901797bdc849768076ee6292a6b3d975b2cf93069bbf2270d37aeab123aa268bf7ae89384237c1b34f282675f71",
+      "salt": "269069ef36dff6ed5c933c111a3a6a3d",
+      "createdAt": "2026-11-15T08:17:16.920Z",
+      "lastLoginAt": "2026-11-15T08:17:16.920Z"
+    },
+    {
+      "id": "usr_76b41110c60a",
+      "name": "SRE User",
+      "email": "sre_1794730636838@orchestrix.io",
+      "role": "DevOps / SRE",
+      "passwordHash": "6e6650a82d51e3487a0bc2ee6556d95678095d21bff9023a941526856ea795322611c24cd25ecde1967d6d083222f75506adcd3c7550f46e4f1831abee318995",
+      "salt": "e2615fb44ee50654c6596e61025f9fc0",
+      "createdAt": "2026-11-15T08:17:16.984Z",
+      "lastLoginAt": "2026-11-15T08:17:16.984Z"
+    },
+    {
+      "id": "usr_a061b6e90857",
+      "name": "Admin User",
+      "email": "admin_1794730636838@orchestrix.io",
+      "role": "Admin",
+      "passwordHash": "1ab4f2ae14fec00b85d207b651232b87e6d6e6591a5c2d4af96bf8643c800f4f8a580c336e28b7838df98fad5d607406c32fa7d34050ee45dc1bb5955c64e911",
+      "salt": "8b79397c488855f9a70d72e94b147251",
+      "createdAt": "2026-11-15T08:17:17.042Z",
+      "lastLoginAt": "2026-11-15T08:17:17.042Z"
+    },
+    {
+      "id": "usr_09ba8d02f039",
+      "name": "Privilege Escalation Attempt",
+      "email": "viewer_only_1794749147236@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "eb4e55e4defb7bd9d26ea32453b8c6cb03044ee7cac2fbaf238a45db1332507cd60d39ca683f3ee4c1a70344985b95c81bb3e5d920ca09c9ad4c37aadd7bfd2e",
+      "salt": "e5225dc2de8d96a6b07eb996ab057b06",
+      "createdAt": "2026-11-15T13:25:47.307Z",
+      "lastLoginAt": "2026-11-15T13:25:47.307Z"
+    },
+    {
+      "id": "usr_c88c6efae33e",
+      "name": "Viewer User",
+      "email": "viewer_1794749147326@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "cd419f4306b76e2c30d4a1b6ff546e3f4658723f728a403c7dd6b83648af71919c285e4578ffc6a0432d9500775741f62c315939579c884f6153be97c54c8594",
+      "salt": "385e7a02ca757f4a02fc28095feb0419",
+      "createdAt": "2026-11-15T13:25:47.400Z",
+      "lastLoginAt": "2026-11-15T13:25:47.400Z"
+    },
+    {
+      "id": "usr_399cdd6b11f4",
+      "name": "SRE User",
+      "email": "sre_1794749147326@orchestrix.io",
+      "role": "DevOps / SRE",
+      "passwordHash": "a553fd3c6efa5e9741540b2e987585a0cfe48ef4628d1582f547d364b2151846eb461a181e35f5ff095b064be839e5475c8beb2c4377c482d4a08e63d349ade6",
+      "salt": "0d5b85aec79f34f18f97ea4fe2b6fe18",
+      "createdAt": "2026-11-15T13:25:47.451Z",
+      "lastLoginAt": "2026-11-15T13:25:47.451Z"
+    },
+    {
+      "id": "usr_8a432f32e704",
+      "name": "Admin User",
+      "email": "admin_1794749147326@orchestrix.io",
+      "role": "Admin",
+      "passwordHash": "df9015a88062662dbd4560bbc724519cb15d3b0be95dff5fa9ed4ef165015a80781253182601c8866e245f54e83be383a213630e0b64ff40e16efff9ae7ab3d9",
+      "salt": "a8f67a703716296b53836dd3e1d34d5f",
+      "createdAt": "2026-11-15T13:25:47.502Z",
+      "lastLoginAt": "2026-11-15T13:25:47.502Z"
+    },
+    {
+      "id": "usr_1c8988e7daab",
+      "name": "Privilege Escalation Attempt",
+      "email": "viewer_only_1794749178591@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "83108e410a06f60e1d9a8ba12d36776edb0d064c9f51eb8fd4addbb755ada396ef3d94d067032c33f81c3c2553c204d9c4fb3b1a952c1759dfce2425cfdc8612",
+      "salt": "8a00be6286229d61be2c27ee2c2d2bc4",
+      "createdAt": "2026-11-15T13:26:18.662Z",
+      "lastLoginAt": "2026-11-15T13:26:18.662Z"
+    },
+    {
+      "id": "usr_b62fdd5a1f44",
+      "name": "Viewer User",
+      "email": "viewer_1794749178677@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "422a02db83e1bbfc7345687a39c30d5d7fd26d5bb9e0d9dd3ed70d9d0cc16b3c9c8c4a51b5059777f848e5ae747a76f322f25964dde51ef1add4105955bf7a92",
+      "salt": "685a16997468a8bc2b470b8f51989944",
+      "createdAt": "2026-11-15T13:26:18.745Z",
+      "lastLoginAt": "2026-11-15T13:26:18.745Z"
+    },
+    {
+      "id": "usr_48602410bee1",
+      "name": "SRE User",
+      "email": "sre_1794749178677@orchestrix.io",
+      "role": "DevOps / SRE",
+      "passwordHash": "b541e19ad9ba5f33d5bdb48a782e21a04619d5b5d75b8bc5d0d125694342650b876dd17cf2cef5b3358d3fade9f961f90933973fca1c99e1558db96489119c21",
+      "salt": "01dde1eecf532e9e233a25f683171336",
+      "createdAt": "2026-11-15T13:26:18.799Z",
+      "lastLoginAt": "2026-11-15T13:26:18.799Z"
+    },
+    {
+      "id": "usr_70288f04fb61",
+      "name": "Admin User",
+      "email": "admin_1794749178677@orchestrix.io",
+      "role": "Admin",
+      "passwordHash": "1a44f65b7d2505093c16c489b5332cfe57dabea153c233b65665f2ed19e58d9eb93bbc41523bb9f2f7dd3a0a77bd3e221d1ad50f213537b23f7d219cfd63de8f",
+      "salt": "304a607107b349c35a3b04ac15477a29",
+      "createdAt": "2026-11-15T13:26:18.862Z",
+      "lastLoginAt": "2026-11-15T13:26:18.862Z"
+    },
+    {
+      "id": "usr_a1beb5227f61",
+      "name": "Privilege Escalation Attempt",
+      "email": "viewer_only_1794759411210@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "364952b69c08a54125f04cad4509b9c24785d7437649b78bef6a616e4af8f7d27463cdefe62736a9b3171da2d1dab1e67ef759abb377bc8cce7e093902e61170",
+      "salt": "876414077323a000c128697844247a16",
+      "createdAt": "2026-11-15T16:16:51.281Z",
+      "lastLoginAt": "2026-11-15T16:16:51.281Z"
+    },
+    {
+      "id": "usr_01627e24ae3f",
+      "name": "Viewer User",
+      "email": "viewer_1794759411297@orchestrix.io",
+      "role": "Viewer",
+      "passwordHash": "90fe2abdc4c2c5f04fa5e5e559dffd9a7272efce5d032a2f05fc631e33f79811a557dc79c057ec2e45d3bb904bf73939f7d31eb5065acb2d694706c1c8ee1530",
+      "salt": "33358f7ad902426c708769289e9eb573",
+      "createdAt": "2026-11-15T16:16:51.371Z",
+      "lastLoginAt": "2026-11-15T16:16:51.371Z"
+    },
+    {
+      "id": "usr_f5729d936c74",
+      "name": "SRE User",
+      "email": "sre_1794759411297@orchestrix.io",
+      "role": "DevOps / SRE",
+      "passwordHash": "9d82d42416a5be6725f11411b54edb28181349b6c7e4411d1b2362a8798aa10a4b47591f24c135a37463a277b02023bf7c158ccca8c6137184e51087b851bad2",
+      "salt": "170837ba30f2a3c35a4031ff7ff807c3",
+      "createdAt": "2026-11-15T16:16:51.424Z",
+      "lastLoginAt": "2026-11-15T16:16:51.424Z"
+    },
+    {
+      "id": "usr_32664d7a689a",
+      "name": "Admin User",
+      "email": "admin_1794759411297@orchestrix.io",
+      "role": "Admin",
+      "passwordHash": "e1b2bb5710a8b1357e87ab6c8dedb4421965ef85f3f41436d0198fb07fd547fa49a2e91f5d9249b8c7ee7722e3ff19caca41ee92a0073bf1c28ef8d899315db3",
+      "salt": "5001ef3aa77a5961c9bedf471e01e42a",
+      "createdAt": "2026-11-15T16:16:51.474Z",
+      "lastLoginAt": "2026-11-15T16:16:51.474Z"
+    }
+  ]
+}

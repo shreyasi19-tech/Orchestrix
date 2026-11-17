@@ -1,0 +1,77 @@
+name: Orchestrix CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-test-build:
+    name: Lint, Test & Build (npm)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22 with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies via npm ci
+        run: npm ci
+
+      - name: Typecheck & Lint (tsc --noEmit)
+        run: npm run lint
+
+      - name: Run Vitest & Supertest suite with V8 coverage
+        run: npm run test:coverage
+
+      - name: Build production frontend bundle
+        run: npm run build
+
+      - name: Upload coverage report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+  docker-build:
+    name: Docker Build & Smoke Test
+    runs-on: ubuntu-latest
+    needs: lint-test-build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: orchestrix:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test container /api/health
+        run: |
+          docker run -d --name orchestrix-smoke -p 3000:3000 orchestrix:ci
+          trap "docker rm -f orchestrix-smoke || true" EXIT
+          for i in $(seq 1 15); do
+            if curl -fsS http://127.0.0.1:3000/api/health; then
+              echo "Container healthcheck passed"
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs orchestrix-smoke
+          exit 1

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="380" viewBox="0 0 920 380">
+  <rect width="920" height="380" rx="12" fill="#FAF6F0" stroke="#EAE1D4" stroke-width="1.5"/>
+
+  <!-- Left Panel -->
+  <rect x="20" y="20" width="430" height="340" rx="10" fill="#FFFFFF" stroke="#EAE1D4"/>
+  <text x="40" y="48" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" fill="#241812">Real worker_threads Throughput &amp; P95 Wait</text>
+  <text x="40" y="66" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#736558">160 jobs per tier · SQLite WAL + Node worker_threads</text>
+
+  <rect x="40" y="80" width="12" height="10" rx="2" fill="#874924"/>
+  <text x="57" y="89" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#5D5044">Jobs / sec</text>
+  <rect x="140" y="80" width="12" height="10" rx="2" fill="#0284C7"/>
+  <text x="157" y="89" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#5D5044">P95 Queue Wait (ms)</text>
+
+  <line x1="55" y1="275" x2="430" y2="275" stroke="#D8CEC0" stroke-width="1"/>
+  
+        <rect x="75" y="263" width="26" height="12" rx="4" fill="#874924"/>
+        <text x="88" y="257" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#241812">19</text>
+        <rect x="105" y="127" width="26" height="148" rx="4" fill="#0284C7"/>
+        <text x="118" y="121" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#0369A1">7869ms</text>
+        <text x="103" y="295" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#5D5044">1w</text>
+      
+
+        <rect x="165" y="227" width="26" height="48" rx="4" fill="#874924"/>
+        <text x="178" y="221" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#241812">75.8</text>
+        <rect x="195" y="239" width="26" height="36" rx="4" fill="#0284C7"/>
+        <text x="208" y="233" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#0369A1">1906ms</text>
+        <text x="193" y="295" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#5D5044">4w</text>
+      
+
+        <rect x="255" y="181" width="26" height="94" rx="4" fill="#874924"/>
+        <text x="268" y="175" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#241812">148.5</text>
+        <rect x="285" y="258" width="26" height="17" rx="4" fill="#0284C7"/>
+        <text x="298" y="252" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#0369A1">917ms</text>
+        <text x="283" y="295" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#5D5044">8w</text>
+      
+
+        <rect x="345" y="127" width="26" height="148" rx="4" fill="#874924"/>
+        <text x="358" y="121" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#241812">233.7</text>
+        <rect x="375" y="266" width="26" height="9" rx="4" fill="#0284C7"/>
+        <text x="388" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="bold" fill="#0369A1">461ms</text>
+        <text x="373" y="295" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#5D5044">16w</text>
+      
+  <text x="235" y="330" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#736558">Worker Thread Pool Size</text>
+
+  <!-- Right Panel -->
+  <rect x="470" y="20" width="430" height="340" rx="10" fill="#FFFFFF" stroke="#EAE1D4"/>
+  <text x="490" y="48" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" fill="#241812">Starvation Test: Low-Priority Progress (t=0..110s)</text>
+  <text x="490" y="66" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#736558">40 Low jobs vs 240 High arrivals (100% capacity saturation 0..60s)</text>
+
+  <line x1="490" y1="85" x2="510" y2="85" stroke="#059669" stroke-width="3"/>
+  <text x="516" y="89" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#065F46">With Aging (+1.5/s): P95 43s</text>
+  <line x1="700" y1="85" x2="720" y2="85" stroke="#E11D48" stroke-width="3" stroke-dasharray="5,3"/>
+  <text x="726" y="89" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#9F1239">No Aging: P95 69s</text>
+
+  <!-- Peak Contention Shaded Region -->
+  <rect x="520" y="105" width="188" height="170" fill="#FEF3C7" opacity="0.45"/>
+  <line x1="708" y1="105" x2="708" y2="275" stroke="#D97706" stroke-dasharray="4,3"/>
+  <text x="614" y="120" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="10" font-weight="600" fill="#B45309">100% High-Priority Saturation</text>
+
+  <line x1="520" y1="275" x2="870" y2="275" stroke="#D8CEC0" stroke-width="1"/>
+  <line x1="520" y1="105" x2="520" y2="275" stroke="#D8CEC0" stroke-width="1"/>
+  <text x="512" y="278" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#736558">0</text>
+  <text x="512" y="193" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#736558">20</text>
+  <text x="512" y="110" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#736558">40</text>
+
+  <polyline fill="none" stroke="#E11D48" stroke-width="3" stroke-dasharray="6,3" points="520,275 552,275 584,275 615,275 647,275 679,275 708,275 711,258 743,105 775,105 806,105 838,105 870,105"/>
+  <polyline fill="none" stroke="#059669" stroke-width="3" points="520,275 552,275 584,275 615,275 647,156 679,105 708,105 711,105 743,105 775,105 806,105 838,105 870,105"/>
+
+  <text x="520" y="295" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#736558">0s</text>
+  <text x="708" y="295" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#B45309">60s</text>
+  <text x="870" y="295" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#736558">110s</text>
+  <text x="695" y="330" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#736558">Cluster Elapsed Time (seconds) — Low Jobs Dispatched</text>
+</svg>
