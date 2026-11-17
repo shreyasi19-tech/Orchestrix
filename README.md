@@ -235,6 +235,6 @@ npm run load-test       # throughput + starvation benchmarks
 - [ ] Postgres adapter with `SKIP LOCKED` queue
 - [ ] Policy comparison benchmark (FIFO vs priority vs aging)
 
-**<Shreyasi Das>** · [LinkedIn](www.linkedin.com/in/shreyasi-das-86b7b22b2)
+**Shreyasi Das** · [LinkedIn](www.linkedin.com/in/shreyasi-das-86b7b22b2)
 
 *Built to explore scheduling, fault tolerance, and delivery guarantees in distributed systems.*
